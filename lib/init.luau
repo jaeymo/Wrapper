@@ -16,7 +16,7 @@ local Viewer = require(script.Parent["viewer"])
 local Signal = require(script.Parent["signal"])
 local Trove = require(script.Parent["trove"])
 
-local DEFAULT_OPTIONS = 
+local DEFAULT_OPTIONS =
 {
 	Methods = {
 		Init = "Init",

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Wrapper | Wrapper</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://jaeymo.github.io/Wrapper/api/Wrapper"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Wrapper | Wrapper"><meta data-rh="true" name="description" content="A Wrapper is useful for instantiating and managing instances of
+a class based off tags."><meta data-rh="true" property="og:description" content="A Wrapper is useful for instantiating and managing instances of
+a class based off tags."><link data-rh="true" rel="canonical" href="https://jaeymo.github.io/Wrapper/api/Wrapper"><link data-rh="true" rel="alternate" href="https://jaeymo.github.io/Wrapper/api/Wrapper" hreflang="en"><link data-rh="true" rel="alternate" href="https://jaeymo.github.io/Wrapper/api/Wrapper" hreflang="x-default"><link rel="stylesheet" href="/Wrapper/assets/css/styles.b9f2c64d.css">
+<script src="/Wrapper/assets/js/runtime~main.327d583d.js" defer="defer"></script>
+<script src="/Wrapper/assets/js/main.3ef5836d.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Wrapper/"><b class="navbar__title text--truncate">Wrapper</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Wrapper/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/jaeymo/Wrapper" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/Wrapper/api/Wrapper">​Wrapper</a></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Wrapper</span></h1><div class="luaClassTags_EipM"></div><div>
+<p>
+  A Wrapper is useful for instantiating and managing instances of
+  a class based off tags.
+</p>
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L98"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><div class="inset_uKQm"><div><code>Class<!-- -->: </code><code class="blue_P4bS">Class</code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">T</code><code class="op_lSLc">&gt;</code><code class="blue_P4bS">?</code><code>,</code></div><div><code>Tag<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>Options<!-- -->: </code><code class="blue_P4bS">Options?</code></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Wrapper/api/Wrapper">Wrapper</a></code><code class="op_lSLc">&lt;</code><code class="blue_P4bS">T</code><code class="op_lSLc">&gt;</code></div><div>
+<p>Constructs a Wrapper object.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> wrapper <span class="token operator">=</span> Wrapper<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetAll"><code style="text-decoration:none">GetAll</code><a href="#GetAll" class="hash-link" aria-label="Direct link to GetAll" title="Direct link to GetAll">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L146"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">GetAll</code><code>(</code><code>) → </code><code class="purple_ieR2">{</code><span><code>[</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>]</code></span><code>: </code><code class="blue_P4bS">T</code><code class="purple_ieR2">}</code></div><div>
+<p>Returns all of the currently tracked objects.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> objects <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">GetAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetObject"><code style="text-decoration:none">GetObject</code><a href="#GetObject" class="hash-link" aria-label="Direct link to GetObject" title="Direct link to GetObject">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L162"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">GetObject</code><code>(</code><code>Inst<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code class="blue_P4bS">T?</code></div><div>
+<p>Gets the object associated with the given instance.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> object <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">GetObject</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+object<span class="token punctuation">:</span><span class="token function">DoSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetObjectByGUID"><code style="text-decoration:none">GetObjectByGUID</code><a href="#GetObjectByGUID" class="hash-link" aria-label="Direct link to GetObjectByGUID" title="Direct link to GetObjectByGUID">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L179"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">GetObjectByGUID</code><code>(</code><code>GUID<!-- -->: </code><code class="blue_P4bS">string</code><code>) → </code><code class="blue_P4bS">T?</code></div><div>
+<p>Gets the object associated with the given GUID.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> guid <span class="token operator">=</span> <span class="token string">"342dcb0a-11b0-4119-abd8-ef8a100816b4"</span>
+<span class="token keyword">local</span> object <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">GetObjectByGUID</span><span class="token punctuation">(</span>guid<span class="token punctuation">)</span>
+object<span class="token punctuation">:</span><span class="token function">DoSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="AwaitObject"><code style="text-decoration:none">AwaitObject</code><a href="#AwaitObject" class="hash-link" aria-label="Direct link to AwaitObject" title="Direct link to AwaitObject">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L198"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">AwaitObject</code><code>(</code><div class="inset_uKQm"><div><code>Inst<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>,</code></div><div><code>Timeout<!-- -->: </code><code class="blue_P4bS">number?</code></div></div><code>) → </code><code class="blue_P4bS">Promise</code></div><div>
+<pre class="language-lua"><code class="language-lua">wrapper<span class="token punctuation">:</span><span class="token function">AwaitObject</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">andThen</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span>
+		object<span class="token punctuation">:</span><span class="token function">DoSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">end</span><span class="token punctuation">)</span>
+	<span class="token punctuation">:</span><span class="token function">catch</span><span class="token punctuation">(</span>warn<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Call"><code style="text-decoration:none">Call</code><a href="#Call" class="hash-link" aria-label="Direct link to Call" title="Direct link to Call">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L237"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">Call</code><code>(</code><div class="inset_uKQm"><div><code>Object<!-- -->: </code><code class="blue_P4bS">T</code><code>,</code></div><div><code>Method<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>...<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>Calls a method on the object associated with the given instance.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> object <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">GetObject</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+wrapper<span class="token punctuation">:</span><span class="token function">Call</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> <span class="token string">"DoSomething"</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="CallAll"><code style="text-decoration:none">CallAll</code><a href="#CallAll" class="hash-link" aria-label="Direct link to CallAll" title="Direct link to CallAll">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L253"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">CallAll</code><code>(</code><div class="inset_uKQm"><div><code>Method<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>...<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Calls a method on all objects.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> randomVariable <span class="token operator">=</span> <span class="token number">10</span>
+wrapper<span class="token punctuation">:</span><span class="token function">CallAll</span><span class="token punctuation">(</span><span class="token string">"DoSomething"</span><span class="token punctuation">,</span> randomVariable<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Apply"><code style="text-decoration:none">Apply</code><a href="#Apply" class="hash-link" aria-label="Direct link to Apply" title="Direct link to Apply">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L274"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">Apply</code><code>(</code><code>Inst<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Creates a new object for an instance and starts tracking it.
+  Also provides the object with a trove that will be cleaned up
+  upon destruction.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> object <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">Apply</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+<span class="token keyword">if</span> object <span class="token keyword">then</span>
+	object<span class="token punctuation">:</span> <span class="token function">DoSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Revoke"><code style="text-decoration:none">Revoke</code><a href="#Revoke" class="hash-link" aria-label="Direct link to Revoke" title="Direct link to Revoke">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L359"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">Revoke</code><code>(</code><code>Inst<!-- -->: </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>
+  Manually cleans up an object. Note, this does not
+  destroy the object (though that is another way to force
+  cleanup).
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> object <span class="token operator">=</span> wrapper<span class="token punctuation">:</span><span class="token function">Apply</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+
+<span class="token comment">-- cleans up the instance in the wrapper</span>
+wrapper<span class="token punctuation">:</span><span class="token function">Revoke</span><span class="token punctuation">(</span>someInstance<span class="token punctuation">)</span>
+
+<span class="token comment">-- you could also destroy the instance, thereby invoking the tag removed event</span>
+someInstance<span class="token punctuation">:</span>Destroy <span class="token comment">-- also cleans up</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="RevokeAll"><code style="text-decoration:none">RevokeAll</code><a href="#RevokeAll" class="hash-link" aria-label="Direct link to RevokeAll" title="Direct link to RevokeAll">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L400"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">RevokeAll</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Revokes all wrapped objects.</p>
+<pre class="language-lua"><code class="language-lua">wrapper<span class="token punctuation">:</span><span class="token function">RevokeAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Destroy"><code style="text-decoration:none">Destroy</code><a href="#Destroy" class="hash-link" aria-label="Direct link to Destroy" title="Direct link to Destroy">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/jaeymo/Wrapper/blob/main/lib/init.luau#L415"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Wrapper<!-- -->:</code><code class="green_DgR4">Destroy</code><code>(</code><code>) → </code><code>(</code><code>)</code></div><div>
+<p>Cleans up the entire Wrapper, destroying all tracked objects and resources.</p>
+<pre class="language-lua"><code class="language-lua">wrapper<span class="token punctuation">:</span><span class="token function">Destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Constructs a Wrapper object.\n\n```lua\nlocal wrapper = Wrapper.new()\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Class&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Class&lt;T&gt;?&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Tag&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Options&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Options?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Wrapper&lt;T&gt;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 98,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetAll&quot;,
+            &quot;desc&quot;: &quot;Returns all of the currently tracked objects.\n\n```lua\nlocal objects = wrapper:GetAll()\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{ [ Instance ]: T }&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 146,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetObject&quot;,
+            &quot;desc&quot;: &quot;Gets the object associated with the given instance.\n\n```lua\nlocal object = wrapper:GetObject(someInstance)\nobject:DoSomething()\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Inst&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 162,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetObjectByGUID&quot;,
+            &quot;desc&quot;: &quot;Gets the object associated with the given GUID.\n\n```lua\nlocal guid = \&quot;342dcb0a-11b0-4119-abd8-ef8a100816b4\&quot;\nlocal object = wrapper:GetObjectByGUID(guid)\nobject:DoSomething()\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;GUID&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;T?&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 179,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;AwaitObject&quot;,
+            &quot;desc&quot;: &quot;```lua\nwrapper:AwaitObject(someInstance)\n\t:andThen(function(object)\n\t\tobject:DoSomething()\n\tend)\n\t:catch(warn)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Inst&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Instance&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Timeout&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Promise&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 198,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Call&quot;,
+            &quot;desc&quot;: &quot;Calls a method on the object associated with the given instance.\n\n```lua\nlocal object = wrapper:GetObject(someInstance)\nwrapper:Call(object, \&quot;DoSomething\&quot;)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Object&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;T&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;Method&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;...&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 237,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;CallAll&quot;,
+            &quot;desc&quot;: &quot;Calls a method on all objects.\n\n```lua\nlocal randomVariable = 10\nwrapper:CallAll(\&quot;DoSomething\&quot;, randomVariable)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Method&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;...&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 253,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Apply&quot;,
+            &quot;desc&quot;: &quot;Creates a new object for an instance and starts tracking it.\nAlso provides the object with a trove that will be cleaned up\nupon destruction.\n\n```lua\nlocal object = wrapper:Apply(someInstance)\nif object then\n\tobject: DoSomething()\nend\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Inst&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 274,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Revoke&quot;,
+            &quot;desc&quot;: &quot;Manually cleans up an object. Note, this does not\ndestroy the object (though that is another way to force\ncleanup).\n\n```lua\nlocal object = wrapper:Apply(someInstance)\n\n-- cleans up the instance in the wrapper\nwrapper:Revoke(someInstance)\n\n-- you could also destroy the instance, thereby invoking the tag removed event\nsomeInstance:Destroy -- also cleans up\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;Inst&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Instance&quot;
+                }
+            ],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 359,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;RevokeAll&quot;,
+            &quot;desc&quot;: &quot;Revokes all wrapped objects.\n\n```lua\nwrapper:RevokeAll()\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 400,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Destroy&quot;,
+            &quot;desc&quot;: &quot;Cleans up the entire Wrapper, destroying all tracked objects and resources.\n\n```lua\nwrapper:Destroy()\n```&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 415,
+                &quot;path&quot;: &quot;lib/init.luau&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;Wrapper&quot;,
+    &quot;desc&quot;: &quot;A Wrapper is useful for instantiating and managing instances of\na class based off tags.&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 41,
+        &quot;path&quot;: &quot;lib/init.luau&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#Apply" class="table-of-contents__link toc-highlight">:Apply</a></li><li><a href="#AwaitObject" class="table-of-contents__link toc-highlight">:AwaitObject</a></li><li><a href="#Call" class="table-of-contents__link toc-highlight">:Call</a></li><li><a href="#CallAll" class="table-of-contents__link toc-highlight">:CallAll</a></li><li><a href="#Destroy" class="table-of-contents__link toc-highlight">:Destroy</a></li><li><a href="#GetAll" class="table-of-contents__link toc-highlight">:GetAll</a></li><li><a href="#GetObject" class="table-of-contents__link toc-highlight">:GetObject</a></li><li><a href="#GetObjectByGUID" class="table-of-contents__link toc-highlight">:GetObjectByGUID</a></li><li><a href="#Revoke" class="table-of-contents__link toc-highlight">:Revoke</a></li><li><a href="#RevokeAll" class="table-of-contents__link toc-highlight">:RevokeAll</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 jaeymo. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+[package]
+name = "jaeymo/wrapper"
+description = "Manages the life-cycle of object-oriented classes by tracking tagged instances"
+version = "2.0.3"
+license = "MIT"
+authors = ["Jaeymo"]
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+promise = "howmanysmall/typed-promise@4.0.6"
+general-util = "jaeymo/general-util@0.3.1"
+signal = "sleitnick/signal@2.0.3"
+trove = "sleitnick/trove@1.5.1"
+viewer = "jaeymo/viewer@0.1.0"

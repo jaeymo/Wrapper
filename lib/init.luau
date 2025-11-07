@@ -408,6 +408,9 @@ end
 	@within Wrapper
 	Cleans up the entire Wrapper, destroying all tracked objects and resources.
 
+	:::warning Metatable Removal
+	Running this will make any further attempts to call a method of Janitor
+	error.
 	```lua
 	wrapper:Destroy()
 	```

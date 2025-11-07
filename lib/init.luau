@@ -1,9 +1,9 @@
 --!strict
 
 --[[
-	Wrapper: Manages the life-cycle of object-oriented classes by tracking tagged instances
+	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.0.3
+	Version: 2.0.7
 	License: MIT
 	Created: 09/06/2025
 
@@ -88,12 +88,19 @@ type WrapperProperties<T> = {
 export type Wrapper<T> = typeof(setmetatable({} :: WrapperProperties<T>, Wrapper))
 
 --[=[
-	@return Wrapper<T>
-	Constructs a Wrapper object.
+	When an instance gets an object applied into Wrapper.
+	@prop OnAdded Signal
+	@within Wrapper
+]=]
+--[=[
+	When an instance gets an object revoked from Wrapper.
+	@prop OnRevoked Signal
+	@within Wrapper
+]=]
 
-	```lua
-	local wrapper = Wrapper.new()
-	```
+--[=[
+	Instantiates a new Wrapper object.
+	@return Wrapper<T>
 ]=]
 function Wrapper.new<T>(Class: Class<T>?, Tag: string, Options: Options?): Wrapper<T>
 	assert(type(Tag) == "string", `Expected string, got: {type(Tag)}`)
@@ -134,58 +141,46 @@ function Wrapper.new<T>(Class: Class<T>?, Tag: string, Options: Options?): Wrapp
 end
 
 --[=[
-	@method GetAll
-	@within Wrapper
 	@return { [ Instance ]: T }
 	Returns all of the currently tracked objects.
-
-	```lua
-	local objects = wrapper:GetAll()
-	```
 ]=]
 function Wrapper.GetAll<T>(self: Wrapper<T>): { [Instance]: T }
 	return self.Objects
 end
 
 --[=[
-	@method GetObject
-	@within Wrapper
-	@param Inst Instance
-	@return T?
-	Gets the object associated with the given instance.
+	Gets the `object` associated with the given `instance`.
 
 	```lua
 	local object = wrapper:GetObject(someInstance)
 	object:DoSomething()
 	```
+
+	@param Inst Instance
+	@return T?
 ]=]
 function Wrapper.GetObject<T>(self: Wrapper<T>, Inst: Instance): T?
 	return self.Objects[Inst]
 end
 
 --[=[
-	@method GetObjectByGUID
-	@within Wrapper
-	@param GUID string
-	@return T?
-	Gets the object associated with the given GUID.
+	Gets the `object` associated with the given `GUID`.
 
 	```lua
 	local guid = "342dcb0a-11b0-4119-abd8-ef8a100816b4"
 	local object = wrapper:GetObjectByGUID(guid)
 	object:DoSomething()
 	```
+
+	@param GUID string
+	@return T?
 ]=]
-function Wrapper.GetObjectByGUID<T>(self: Wrapper<T>, GUID: string): T?	
+function Wrapper.GetObjectByGUID<T>(self: Wrapper<T>, GUID: string): T?
 	return self.IdMap[GUID] and self:GetObject(self.IdMap[GUID])
 end
 
 --[=[
-	@method AwaitObject
-	@within Wrapper
-	@param Inst Instance
-	@param Timeout number?
-	@return Promise
+	Method that returns a `Promise` for when an `object` may not be loaded.
 
 	```lua
 	wrapper:AwaitObject(someInstance)
@@ -194,6 +189,10 @@ end
 		end)
 		:catch(warn)
 	```
+
+	@param Inst Instance
+	@param Timeout number?
+	@return Promise
 ]=]
 function Wrapper.AwaitObject<T>(self: Wrapper<T>, Inst: Instance, Timeout: number?): Promise
 	return Promise.new(function(resolve, reject)
@@ -221,48 +220,48 @@ function Wrapper.AwaitObject<T>(self: Wrapper<T>, Inst: Instance, Timeout: numbe
 end
 
 --[=[
-	@method Call
-	@within Wrapper
-	@param Object T
-	@param Method string
-	@param ... any
-	@return any
-	Calls a method on the object associated with the given instance.
+	Calls a `method` on the `object` corresponding with the given `instance`. You can
+	pass any parameters you'd like after the object and the method name.
+
+	:::info Note
+	Setting `Debug` to `true` in the options parameter in the constructor will
+	have this method use debug warns.
+	:::
 
 	```lua
 	local object = wrapper:GetObject(someInstance)
 	wrapper:Call(object, "DoSomething")
 	```
+
+	@param Object T
+	@param Method string
+	@param ... any
+	@return any
 ]=]
-function Wrapper.Call<T>(self: Wrapper<T>, Object: T, Method: string, ...: any)
+function Wrapper.Call<T>(self: Wrapper<T>, Object: T, Method: string, ...: any): any
 	return GeneralUtil.DebugSafecall(Object, Method, self.Options.Debug or DEFAULT_OPTIONS.Debug, ...)
 end
 
 --[=[
-	@method CallAll
-	@within Wrapper
-	@param Method string
-	@param ... any
-	Calls a method on all objects.
+	Calls a `method` on all `objects`.
 
 	```lua
 	local randomVariable = 10
 	wrapper:CallAll("DoSomething", randomVariable)
 	```
+
+	@param Method string
+	@param ... any
 ]=]
-function Wrapper.CallAll<T>(self: Wrapper<T>, Method: string, ...: any)
+function Wrapper.CallAll<T>(self: Wrapper<T>, Method: string, ...: any): ()
 	for _, Object in self.Objects do
 		self:Call(Object, Method, ...)
 	end
 end
 
 --[=[
-	@method Apply
-	@within Wrapper
-	@param Inst Instance
-	Creates a new object for an instance and starts tracking it.
-	Also provides the object with a trove that will be cleaned up
-	upon destruction.
+	Creates a new `object` for an `instance`. It will call the constructor method
+	of the object and give pass in the instance, trove, and optionally a GUID.
 
 	```lua
 	local object = wrapper:Apply(someInstance)
@@ -270,6 +269,9 @@ end
 		object: DoSomething()
 	end
 	```
+
+	@param Inst Instance
+	@return T?
 ]=]
 function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	if self.Objects[Inst] then return nil end
@@ -339,12 +341,12 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 end
 
 --[=[
-	@method Revoke
-	@within Wrapper
-	@param Inst Instance
-	Manually cleans up an object. Note, this does not
-	destroy the object (though that is another way to force
-	cleanup).
+	Cleans up an `object`.
+
+	:::info Note
+	This will nullify the object's metatable, so you will not be able to use
+	the object after revoking it from Wrapper.
+	:::
 
 	```lua
 	local object = wrapper:Apply(someInstance)
@@ -355,8 +357,10 @@ end
 	-- you could also destroy the instance, thereby invoking the tag removed event
 	someInstance:Destroy -- also cleans up
 	```
+
+	@param Inst Instance
 ]=]
-function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance)
+function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 	if not self.Objects[Inst] then return end
 
 	if Inst:GetAttribute("GUID") then
@@ -389,33 +393,28 @@ function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance)
 end
 
 --[=[
-	@method RevokeAll
-	@within Wrapper
 	Revokes all wrapped objects.
-
-	```lua
-	wrapper:RevokeAll()
-	```
 ]=]
-function Wrapper.RevokeAll<T>(self: Wrapper<T>)
+function Wrapper.RevokeAll<T>(self: Wrapper<T>): ()
 	for Inst in self.Objects do
 		self:Revoke(Inst)
 	end
 end
 
 --[=[
-	@method Destroy
-	@within Wrapper
-	Cleans up the entire Wrapper, destroying all tracked objects and resources.
+	Destroys all tracked `objects`, cleans the `trove` object and all `signals`, rendering
+	this object useless.
 
 	:::warning Metatable Removal
-	Running this will make any further attempts to call a method of Janitor
+	Running this will make any further attempts to call a method of Wrapper
 	error.
+	:::
+
 	```lua
 	wrapper:Destroy()
 	```
 ]=]
-function Wrapper.Destroy<T>(self: Wrapper<T>)
+function Wrapper.Destroy<T>(self: Wrapper<T>): ()
 	self:RevokeAll()
 	self.OnRevoked:Destroy()
 	self.OnAdded:Destroy()

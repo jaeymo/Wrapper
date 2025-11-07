@@ -1,13 +1,18 @@
 # Wrapper
 Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.
 
-Taking a bit of inspiration from ECS systems, Wrapper automates the creation, initialization, and destruction
-of tagged class instances. Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object that is cleaned up on destruction.
+Wrapper automates the creation, initialization, and destruction of class objects based off tag instances.
+Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object and an optional GUID.
 
 ## Why Use Wrapper?
 - Wrapper makes object-oriented code quicker and cleaner to write.
+- Wrapper handles the cleanup of the object's metatable and the provided [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object.
 - There's plenty of customization when it comes to what naming convention Wrapper uses for your class' methods.
 - Generic type-checking does great in this case. Accessing a wrapper object from elsewhere will still provide the class' type-checking.
+- If you are fanatic about object-oriented programming, this is the module for you! Simply store classes for game objects and apply them via tags.
+
+## Installation
+Wrapper is installable via [wally](https://wally.run/) and you can visit the page [here](https://wally.run/package/jaeymo/wrapper?version=2.0.3).
 
 ## Example Usage
 ```lua
@@ -23,6 +28,7 @@ type KillPart = typeof(setmetatable({} :: {
     GUID: string
 }, KillPartClass))
 
+-- everytime a part with the "KillPart" tag is added, this runs.
 function KillPartClass.new(Part: Instance, Trove: any, GUID: string?): KillPart
     local self = setmetatable({}, KillPartClass)
     self.Part = Part :: BasePart

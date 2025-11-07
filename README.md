@@ -13,7 +13,7 @@ Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/Rbx
 - If you are a fanatic about object-oriented programming, this is the module for you! Simply store classes for game objects and apply them via tags.
 
 ## Installation
-Wrapper is installable via [wally](https://wally.run/) and you can visit the page [here](https://wally.run/package/jaeymo/wrapper?version=2.0.3).
+Wrapper is installable via [wally](https://wally.run/) and you can visit the page [here](https://wally.run/package/jaeymo/wrapper?version=2.0.7).
 
 ## Dependencies
 - [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau)

@@ -1,5 +1,5 @@
 # Wrapper
-Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.
+Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances. Visit documentation [here](https://jaeymo.github.io/Wrapper/).
 
 Wrapper automates the creation, initialization, and destruction of class objects based off tag instances.
 Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object and an optional GUID.
@@ -9,11 +9,19 @@ Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/Rbx
 - Wrapper handles the cleanup of the object's metatable and the provided [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object.
 - There's plenty of customization when it comes to what naming convention Wrapper uses for your class' methods.
 - Generic type-checking does great in this case. Accessing a wrapper object from elsewhere will still provide the class' type-checking.
-- If you are fanatic about object-oriented programming, this is the module for you! Simply store classes for game objects and apply them via tags.
+- Promise suport for the `AwaitObject` method.
+- If you are a fanatic about object-oriented programming, this is the module for you! Simply store classes for game objects and apply them via tags.
 
 ## Installation
 Wrapper is installable via [wally](https://wally.run/) and you can visit the page [here](https://wally.run/package/jaeymo/wrapper?version=2.0.3).
 
+## Dependencies
+- [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau)
+- Promise -- will do soon
+- Signal -- will do soon
+- [Viewer](https://github.com/jaeymo/roblox-packages/Viewer/init.luau)
+- [GeneralUtil](https://github,com/jaeymo/roblox-packages/GeneralUtil/init.luau)
+  
 ## Example Usage
 ```lua
 --!strict

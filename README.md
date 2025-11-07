@@ -1,6 +1,5 @@
 # Wrapper
-Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.                          
-Documentation available [here](https://jaeymo.github.io/Wrapper/).
+Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.
 
 Wrapper automates the creation, initialization, and destruction of class objects based on tag instances.
 Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object and an optional GUID.

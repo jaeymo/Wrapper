@@ -1,7 +1,8 @@
 # Wrapper
-Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances. Visit documentation [here](https://jaeymo.github.io/Wrapper/).
+Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.                          
+Documentation available [here](https://jaeymo.github.io/Wrapper/).
 
-Wrapper automates the creation, initialization, and destruction of class objects based off tag instances.
+Wrapper automates the creation, initialization, and destruction of class objects based on tag instances.
 Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object and an optional GUID.
 
 ## Why Use Wrapper?
@@ -9,7 +10,7 @@ Wrapper provides the constructor with a [Trove](https://github.com/Sleitnick/Rbx
 - Wrapper handles the cleanup of the object's metatable and the provided [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau) object.
 - There's plenty of customization when it comes to what naming convention Wrapper uses for your class' methods.
 - Generic type-checking does great in this case. Accessing a wrapper object from elsewhere will still provide the class' type-checking.
-- Promise suport for the `AwaitObject` method.
+- Promise support for the `AwaitObject` method.
 - If you are a fanatic about object-oriented programming, this is the module for you! Simply store classes for game objects and apply them via tags.
 
 ## Installation
@@ -17,10 +18,10 @@ Wrapper is installable via [wally](https://wally.run/) and you can visit the pag
 
 ## Dependencies
 - [Trove](https://github.com/Sleitnick/RbxUtil/blob/main/modules/trove/init.luau)
-- Promise -- will do soon
-- Signal -- will do soon
-- [Viewer](https://github.com/jaeymo/roblox-packages/Viewer/init.luau)
-- [GeneralUtil](https://github,com/jaeymo/roblox-packages/GeneralUtil/init.luau)
+- [Promise](https://github.com/evaera/roblox-lua-promise/blob/master/lib/init.lua)
+- [Signal](https://github.com/Sleitnick/RbxUtil/blob/main/modules/signal/init.luau)
+- [Viewer](https://github.com/jaeymo/roblox-packages/blob/main/Viewer/init.luau)
+- [GeneralUtil](https://github.com/jaeymo/roblox-packages/blob/main/GeneralUtil/init.luau)
   
 ## Example Usage
 ```lua

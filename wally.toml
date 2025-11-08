@@ -1,7 +1,7 @@
 [package]
 name = "jaeymo/wrapper"
 description = "A Wrapper is useful for instantiating and managing instances of a class based off tags"
-version = "2.0.7"
+version = "2.0.8"
 license = "MIT"
 authors = ["Jaeymo"]
 registry = "https://github.com/UpliftGames/wally-index"

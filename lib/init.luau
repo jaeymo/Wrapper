@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.0.7
+	Version: 2.0.8
 	License: MIT
 	Created: 09/06/2025
 
@@ -17,21 +17,21 @@ local Signal = require(script.Parent["signal"])
 local Trove = require(script.Parent["trove"])
 
 local DEFAULT_OPTIONS =
-{
-	Methods = {
-		Init = "Init",
-		Destroy = "Destroy",
-		Startup = "OnStart",
-		Constructor = "new",
-	},
+	{
+		Methods = {
+			Init = "Init",
+			Destroy = "Destroy",
+			Startup = "OnStart",
+			Constructor = "new",
+		},
 
-	Debug = false,                                          -- Whether debug mode is enabled (extra logs, warnings, etc.)
-	Context = nil,                                          -- The context provided to the class
-	Logging = false,                                        -- Logging of all instances being processed
-	AutoInit = true,                                        -- Automatically call the init method on creation
-	Filter = function(instance: Instance) return true end,  -- Function to filter instances
-	Resolver = function(instance: Instance) return nil end, -- If you want dynamic requires
-}
+		Debug = false,                                          -- Whether debug mode is enabled (extra logs, warnings, etc.)
+		Context = nil,                                          -- The context provided to the class
+		Logging = false,                                        -- Logging of all instances being processed
+		AutoInit = true,                                        -- Automatically call the init method on creation
+		Filter = function(instance: Instance) return true end,  -- Function to filter instances
+		Resolver = function(instance: Instance) return nil end, -- If you want dynamic requires
+	}
 
 --[=[
 	@class Wrapper
@@ -42,25 +42,25 @@ local Wrapper = {}
 Wrapper.__index = Wrapper
 
 type Trove = Trove.Trove
-type Signal = Signal.Signal
-type Promise = Promise.TypedPromise
+type Signal<T...> = Signal.Signal<T...>
+type Promise<T...> = Promise.TypedPromise<T...>
 
 export type Options =
-{
-	Methods: {
-		Init: string,
-		Startup: string,
-		Destroy: string,
-		Constructor: string,
-	}?,
-	Context: any?,
-	GUID: string?,
-	Logging: boolean?,
-	Debug: boolean?,
-	AutoInit: boolean?,
-	Filter: ((object: Instance) -> boolean)?,
-	Resolver: ((instance: Instance) -> Class<any>)?,
-}
+	{
+		Methods: {
+			Init: string,
+			Startup: string,
+			Destroy: string,
+			Constructor: string,
+		}?,
+		Context: any?,
+		GUID: string?,
+		Logging: boolean?,
+		Debug: boolean?,
+		AutoInit: boolean?,
+		Filter: ((object: Instance) -> boolean)?,
+		Resolver: ((instance: Instance) -> Class<any>)?,
+	}
 
 export type Class<T> = {
 	__index: any,
@@ -79,8 +79,8 @@ type WrapperProperties<T> = {
 	Objects: { [Instance]: T },
 	IdMap: { [string]: Instance },
 
-	OnAdded: Signal,
-	OnRevoked: Signal,
+	OnAdded: Signal<any>,
+	OnRevoked: Signal<any>,
 
 	_isActive: boolean,
 }
@@ -194,7 +194,7 @@ end
 	@param Timeout number?
 	@return Promise
 ]=]
-function Wrapper.AwaitObject<T>(self: Wrapper<T>, Inst: Instance, Timeout: number?): Promise
+function Wrapper.AwaitObject<T>(self: Wrapper<T>, Inst: Instance, Timeout: number?): Promise<any>
 	return Promise.new(function(resolve, reject)
 		if typeof(Inst) ~= "Instance" then
 			reject("Invalid instance")
@@ -420,8 +420,8 @@ function Wrapper.Destroy<T>(self: Wrapper<T>): ()
 	self.OnAdded:Destroy()
 	self.Trove:Destroy()
 
-	table.clear(self)
-	setmetatable(self, nil)
+	table.clear(self :: any)
+	setmetatable(self :: any, nil)
 end
 
 function Wrapper._watch<T>(self: Wrapper<T>)

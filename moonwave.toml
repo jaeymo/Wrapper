@@ -1,5 +1,2 @@
 gitRepoUrl = "https://github.com/jaeymo/Wrapper"
 gitSourceBranch = "main"
-
-[docusaurus]
-tagline = "A module that manages the lifecycle of class objects tied to tagged instances."

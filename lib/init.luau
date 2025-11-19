@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.0.9
+	Version: 2.1.0
 	License: MIT
 	Created: 09/06/2025
 
@@ -41,9 +41,9 @@ local DEFAULT_OPTIONS =
 local Wrapper = {}
 Wrapper.__index = Wrapper
 
-type Trove = Trove.Trove
-type Signal<T...> = Signal.Signal<T...>
-type Promise<T...> = Promise.TypedPromise<T...>
+export type Trove = Trove.Trove
+export type Signal<T...> = Signal.Signal<T...>
+export type Promise<T...> = Promise.TypedPromise<T...>
 
 export type Options =
 	{
@@ -330,7 +330,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	end
 
 	if self.Options.Logging then
-		warn(`[{script.Name}] Added instance: {Inst:GetFullName()}`)
+		print(`[{script.Name}] Added instance: {Inst:GetFullName()}`)
 	end
 
 	if not Inst:HasTag(self.Tag) then
@@ -388,7 +388,7 @@ function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 	end
 
 	if self.Options.Logging then
-		warn(`[{script.Name}] Revoked instance: {Inst:GetFullName()}`)
+		print(`[{script.Name}] Revoked instance: {Inst:GetFullName()}`)
 	end
 end
 

@@ -301,9 +301,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	if not Success then
 		ObjectTrove:Destroy()
 
-		if self.Options.Debug then
-			warn(`[{script.Name}] Failed to construct object for {Inst.Name}. Error: {Object}`)
-		end
+		error(`[{script.Name}] Failed to construct object for {Inst.Name}. Error: {Object}`)
 
 		return nil
 	end

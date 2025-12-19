@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.1.1
+	Version: 2.1.2
 	License: MIT
 	Created: 09/06/2025
 
@@ -29,6 +29,7 @@ local DEFAULT_OPTIONS =
 		Context = nil,                                          -- The context provided to the class
 		Logging = false,                                        -- Logging of all instances being processed
 		AutoInit = true,                                        -- Automatically call the init method on creation
+		UseServerGUID = false,                                  -- Automatically call the init method on creation
 		Filter = function(instance: Instance) return true end,  -- Function to filter instances
 		Resolver = function(instance: Instance) return nil end, -- If you want dynamic requires
 	}
@@ -58,6 +59,7 @@ export type Options =
 		Logging: boolean?,
 		Debug: boolean?,
 		AutoInit: boolean?,
+		UseServerGUID: boolean?,
 		Filter: ((object: Instance) -> boolean)?,
 		Resolver: ((instance: Instance) -> Class<any>)?,
 	}
@@ -79,8 +81,8 @@ type WrapperProperties<T> = {
 	Objects: { [Instance]: T },
 	IdMap: { [string]: Instance },
 
-	OnAdded: Signal<any>,
-	OnRevoked: Signal<any>,
+	OnAdded: Signal<Instance, T>,
+	OnRevoked: Signal<Instance, T>,
 
 	_isActive: boolean,
 }
@@ -281,7 +283,23 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	end
 
 	local ObjectTrove = Trove.new()
-	local GUID = self.Options.GUID and GeneralUtil.NewGUID(self.Options.GUID)
+	local GUID
+	
+	if self.Options.UseServerGUID then
+		local Start = os.clock()
+		
+		while not GUID do
+			if os.clock() - Start > 10 then
+				warn(`[{script.Name}] Timed out waiting for GUID for {Inst:GetFullName()}`)
+				return nil
+			end
+			
+			GUID = Inst:GetAttribute(self.Tag .. "GUID")
+			task.wait()
+		end
+	else
+		GUID = self.Options.GUID and GeneralUtil.NewGUID(self.Options.GUID)
+	end
 
 	local Class = self.Options.Resolver and self.Options.Resolver(Inst) or self.Class
 	if not Class then
@@ -301,25 +319,23 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	if not Success then
 		ObjectTrove:Destroy()
 
-		error(`[{script.Name}] Failed to construct object for {Inst.Name}. Error: {Object}`)
-
-		return nil
+		return error(`[{script.Name}] Failed to construct object for {Inst.Name}. Error: {Object}`)
 	end
 
 	if not GUID then
-		local ExistingGUID = Inst:GetAttribute("GUID")
+		local ExistingGUID = Inst:GetAttribute(self.Tag .. "GUID")
 		if ExistingGUID then
 			GUID = ExistingGUID
 		end
 	end
 
 	if GUID then
-		Inst:SetAttribute("GUID", GUID)
+		Inst:SetAttribute(self.Tag .. "GUID", GUID)
 		self.IdMap[GUID] = Inst
 	end
 
 	self.Objects[Inst] = Object
-	self.ObjectTroves[Inst] = ObjectTrove
+	self.ObjectTroves[Inst] = ObjectTrove :: any
 
 	if self.Options.AutoInit then
 		local Init = Methods and Methods.Init or DEFAULT_OPTIONS.Methods.Init
@@ -328,12 +344,14 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	end
 
 	if self.Options.Logging then
-		print(`[{script.Name}] Added instance: {Inst:GetFullName()}`)
+		warn(`[{script.Name}] Added instance: {Inst:GetFullName()}`)
 	end
 
 	if not Inst:HasTag(self.Tag) then
 		Inst:AddTag(self.Tag)
 	end
+	
+	self.OnAdded:Fire(Inst, Object)
 
 	return Object
 end
@@ -361,9 +379,13 @@ end
 function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 	if not self.Objects[Inst] then return end
 
-	if Inst:GetAttribute("GUID") then
-		self.IdMap[Inst:GetAttribute("GUID")] = nil
-		Inst:SetAttribute("GUID", nil)
+	local GUID
+
+	if Inst:GetAttribute(self.Tag .. "GUID") then
+		GUID = Inst:GetAttribute(self.Tag .. "GUID")
+
+		self.IdMap[Inst:GetAttribute(self.Tag .. "GUID")] = nil
+		Inst:SetAttribute(self.Tag .. "GUID", nil)
 	end
 
 	local ObjectTrove = self.ObjectTroves[Inst]
@@ -374,19 +396,22 @@ function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 
 	local Object = self.Objects[Inst]
 	if Object then
+		self.OnRevoked:Fire(Inst, Object)
+
 		local Methods = self.Options.Methods
 		local Destroy = Methods and Methods.Destroy or DEFAULT_OPTIONS.Methods.Destroy
 		local Debug = self.Options.Debug or DEFAULT_OPTIONS.Debug
 		GeneralUtil.DebugSafecall(Object, Destroy, Debug)
 
-		setmetatable(Object :: any, nil)
 		table.clear(Object :: any)
+		setmetatable(Object :: any, nil)
 
 		self.Objects[Inst] = nil
+		
 	end
 
 	if self.Options.Logging then
-		print(`[{script.Name}] Revoked instance: {Inst:GetFullName()}`)
+		warn(`[{script.Name}] Revoked instance: {Inst:GetFullName()}`)
 	end
 end
 

@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.1.2
+	Version: 2.2.0
 	License: MIT
 	Created: 09/06/2025
 
@@ -11,10 +11,10 @@
 ]]
 
 local GeneralUtil = require(script.Parent["general-util"])
+local Janitor = require(script.Parent["janitor"])
 local Promise = require(script.Parent["promise"])
 local Viewer = require(script.Parent["viewer"])
 local Signal = require(script.Parent["signal"])
-local Trove = require(script.Parent["trove"])
 
 local DEFAULT_OPTIONS =
 	{
@@ -42,7 +42,7 @@ local DEFAULT_OPTIONS =
 local Wrapper = {}
 Wrapper.__index = Wrapper
 
-export type Trove = Trove.Trove
+export type Janitor = Janitor.Janitor
 export type Signal<T...> = Signal.Signal<T...>
 export type Promise<T...> = Promise.TypedPromise<T...>
 
@@ -66,18 +66,18 @@ export type Options =
 
 export type Class<T> = {
 	__index: any,
-	new: (inst: Instance, trove: Trove, guid: string?) -> T,
+	new: (inst: Instance, janitor: Janitor, guid: string?) -> T,
 	[any]: any,
 }
 
 type WrapperProperties<T> = {
-	Trove: Trove,
+	Janitor: Janitor,
 	Options: Options,
 	Tag: string,
 	Class: Class<T>?,
 
 	SharedData: { [any]: any },
-	ObjectTroves: { [Instance]: Trove },
+	ObjectJanitors: { [Instance]: Janitor },
 	Objects: { [Instance]: T },
 	IdMap: { [string]: Instance },
 
@@ -109,7 +109,7 @@ function Wrapper.new<T>(Class: Class<T>?, Tag: string, Options: Options?): Wrapp
 
 	local self = setmetatable({} , Wrapper) :: Wrapper<T>
 	self.Options = Options or {} :: Options
-	self.Trove = Trove.new()
+	self.Janitor = Janitor.new()
 	self.Class = Class
 	self.Tag = Tag
 
@@ -120,7 +120,7 @@ function Wrapper.new<T>(Class: Class<T>?, Tag: string, Options: Options?): Wrapp
 	end
 
 	self.SharedData = {}
-	self.ObjectTroves = {}
+	self.ObjectJanitors = {}
 	self.Objects = {}
 	self.IdMap = {}
 
@@ -263,7 +263,7 @@ end
 
 --[=[
 	Creates a new `object` for an `instance`. It will call the constructor method
-	of the object and give pass in the instance, trove, and optionally a GUID.
+	of the object and give pass in the instance, janitor, and optionally a GUID.
 
 	```lua
 	local object = wrapper:Apply(someInstance)
@@ -282,7 +282,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 		return nil
 	end
 
-	local ObjectTrove = Trove.new()
+	local ObjectJanitor = Janitor.new()
 	local GUID
 	
 	if self.Options.UseServerGUID then
@@ -303,7 +303,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 
 	local Class = self.Options.Resolver and self.Options.Resolver(Inst) or self.Class
 	if not Class then
-		ObjectTrove:Destroy()
+		ObjectJanitor:Destroy()
 
 		if self.Options.Debug then
 			warn(`[{script.Name}] No class could be resolved for: {Inst:GetFullName()}`)
@@ -314,10 +314,10 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 
 	local Methods = self.Options.Methods
 	local Constructor = Methods and Methods.Constructor or DEFAULT_OPTIONS.Methods.Constructor
-	local Success, Object = pcall(Class[Constructor], Inst, ObjectTrove, GUID)
+	local Success, Object = pcall(Class[Constructor], Inst, ObjectJanitor, GUID)
 
 	if not Success then
-		ObjectTrove:Destroy()
+		ObjectJanitor:Destroy()
 
 		return error(`[{script.Name}] Failed to construct object for {Inst.Name}. Error: {Object}`)
 	end
@@ -335,7 +335,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	end
 
 	self.Objects[Inst] = Object
-	self.ObjectTroves[Inst] = ObjectTrove :: any
+	self.ObjectJanitors[Inst] = ObjectJanitor :: any
 
 	if self.Options.AutoInit then
 		local Init = Methods and Methods.Init or DEFAULT_OPTIONS.Methods.Init
@@ -350,7 +350,7 @@ function Wrapper.Apply<T>(self: Wrapper<T>, Inst: Instance): T?
 	if not Inst:HasTag(self.Tag) then
 		Inst:AddTag(self.Tag)
 	end
-	
+
 	self.OnAdded:Fire(Inst, Object)
 
 	return Object
@@ -388,10 +388,10 @@ function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 		Inst:SetAttribute(self.Tag .. "GUID", nil)
 	end
 
-	local ObjectTrove = self.ObjectTroves[Inst]
-	if ObjectTrove then
-		ObjectTrove:Destroy()
-		self.ObjectTroves[Inst] = nil
+	local ObjectJanitor = self.ObjectJanitors[Inst]
+	if ObjectJanitor then
+		ObjectJanitor:Destroy()
+		self.ObjectJanitors[Inst] = nil
 	end
 
 	local Object = self.Objects[Inst]
@@ -407,7 +407,6 @@ function Wrapper.Revoke<T>(self: Wrapper<T>, Inst: Instance): ()
 		setmetatable(Object :: any, nil)
 
 		self.Objects[Inst] = nil
-		
 	end
 
 	if self.Options.Logging then
@@ -425,7 +424,7 @@ function Wrapper.RevokeAll<T>(self: Wrapper<T>): ()
 end
 
 --[=[
-	Destroys all tracked `objects`, cleans the `trove` object and all `signals`, rendering
+	Destroys all tracked `objects`, cleans the `janitor` object and all `signals`, rendering
 	this object useless.
 
 	:::warning Metatable Removal
@@ -441,7 +440,7 @@ function Wrapper.Destroy<T>(self: Wrapper<T>): ()
 	self:RevokeAll()
 	self.OnRevoked:Destroy()
 	self.OnAdded:Destroy()
-	self.Trove:Destroy()
+	self.Janitor:Destroy()
 
 	table.clear(self :: any)
 	setmetatable(self :: any, nil)
@@ -451,11 +450,11 @@ function Wrapper._watch<T>(self: Wrapper<T>)
 	if self._isActive then return end
 	self._isActive = true
 
-	self.Trove:Add(Viewer.WatchTag(self.Tag, false, function(Inst: Instance)
+	self.Janitor:Add(Viewer.WatchTag(self.Tag, false, function(Inst: Instance)
 		self:Apply(Inst)
 	end))
 
-	self.Trove:Add(Viewer.WatchTag(self.Tag, true, function(Inst: Instance)
+	self.Janitor:Add(Viewer.WatchTag(self.Tag, true, function(Inst: Instance)
 		self:Revoke(Inst)
 	end))
 end

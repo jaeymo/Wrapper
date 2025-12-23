@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.2.1
+	Version: 2.2.2
 	License: MIT
 	Created: 09/06/2025
 
@@ -159,10 +159,10 @@ end
 	```
 
 	@param Inst Instance
-	@return T?
+	@return T
 ]=]
-function Wrapper.GetObject<T>(self: Wrapper<T>, Inst: Instance): T?
-	return self.Objects[Inst]
+function Wrapper.GetObject<T>(self: Wrapper<T>, Inst: Instance): T
+	return self.Objects[Inst] or error(`[{script.Name}] Missing object for: {Inst.Name}`)
 end
 
 --[=[
@@ -175,9 +175,9 @@ end
 	```
 
 	@param GUID string
-	@return T?
+	@return T
 ]=]
-function Wrapper.GetObjectByGUID<T>(self: Wrapper<T>, GUID: string): T?
+function Wrapper.GetObjectByGUID<T>(self: Wrapper<T>, GUID: string): T
 	return self.IdMap[GUID] and self:GetObject(self.IdMap[GUID])
 end
 

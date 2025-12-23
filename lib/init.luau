@@ -3,7 +3,7 @@
 --[[
 	Wrapper: A Wrapper is useful for instantiating and managing instances of a class based off tags.
 	Author: Jaeymo
-	Version: 2.1.2
+	Version: 2.2.0
 	License: MIT
 	Created: 09/06/2025
 

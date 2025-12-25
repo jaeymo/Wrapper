@@ -9,7 +9,7 @@ realm = "shared"
 
 [dependencies]
 promise = "howmanysmall/typed-promise@4.0.6"
-general-util = "jaeymo/general-util@0.3.1"
+general-util = "jaeymo/general-util@0.4.0"
 janitor = "howmanysmall/janitor@1.18.3"
 signal = "sleitnick/signal@2.0.3"
 viewer = "jaeymo/viewer@0.1.0"

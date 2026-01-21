@@ -1,3 +1,5 @@
+**Use _Classy_, an updated version of this package here: [link](https://github.com/jaeymo/Classy)**
+
 # Wrapper
 Wrapper library. A module that manages the lifecycle of class objects tied to tagged instances.
 
